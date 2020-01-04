@@ -3,7 +3,7 @@ using SchoolManagementSystem.BaseRepository;
 
 namespace SchoolManagementSystem.UnitOfWork
 {
-    public class UnitOfWork : IDisposable
+    public class UnitofWork : IDisposable
     {
         private SchoolDBContext context = new SchoolDBContext();
         private BaseRepository<User> userRepository;

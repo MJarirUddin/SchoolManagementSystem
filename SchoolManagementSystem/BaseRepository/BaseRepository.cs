@@ -6,7 +6,15 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace SchoolManagementSystem.BaseRepository
-{
+{  public interface IBaseRepository<TEntity> where TEntity : class
+    {
+         IEnumerable<TEntity> Get();
+        TEntity GetByID(object id);
+        void Insert(TEntity entity);
+        void Delete(object id);
+        void Delete(TEntity entityToDelete);
+        void Update(TEntity entityToUpdate);
+            } 
     public class BaseRepository<TEntity> where TEntity : class
     {
         internal SchoolDBContext context;
