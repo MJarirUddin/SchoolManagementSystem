@@ -25,9 +25,10 @@ namespace SchoolManagementSystem
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<AccountsStudent> AccountsStudents { get; set; }
         public virtual DbSet<AccountsTeacher> AccountsTeachers { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
     }
 }

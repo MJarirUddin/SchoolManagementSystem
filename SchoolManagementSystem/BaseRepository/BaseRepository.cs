@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 namespace SchoolManagementSystem.BaseRepository
 {  public interface IBaseRepository<TEntity> where TEntity : class
     {
-         IEnumerable<TEntity> Get();
+        IEnumerable<TEntity> Get();
         TEntity GetByID(object id);
         void Insert(TEntity entity);
         void Delete(object id);

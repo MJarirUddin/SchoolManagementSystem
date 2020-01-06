@@ -7,7 +7,6 @@ namespace SchoolManagementSystem.UnitOfWork
     {
         private SchoolDBContext context = new SchoolDBContext();
         private BaseRepository<User> userRepository;
-
         public BaseRepository<User> UserRepository
         {
             get

@@ -20,12 +20,13 @@ namespace SchoolManagementSystem
             this.AccountsStudents = new HashSet<AccountsStudent>();
         }
     
-        public int GR_No { get; set; }
+        public int SID { get; set; }
         public string SName { get; set; }
         public string FName { get; set; }
         public string Contact { get; set; }
         public string Class { get; set; }
         public string Fee { get; set; }
+        public string GR_NO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AccountsStudent> AccountsStudents { get; set; }
