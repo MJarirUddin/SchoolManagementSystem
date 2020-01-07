@@ -21,9 +21,6 @@ namespace SchoolManagementSystem.Controllers
         // GET: Student
         public ActionResult Index()
         {
-             
-
-           
             var students = studentRepository.Get();
 
             return View(students);

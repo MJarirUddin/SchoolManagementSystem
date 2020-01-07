@@ -3,30 +3,34 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - School Admin Panel</title>
+    <title>@ViewBag.Title - School Admin Panel</title>    
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body >
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top bg-dark navbar-dark">
+            @Html.ActionLink("School Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            @*<div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            </div>*@
+            <ul class="nav navbar-nav navbar-expand">
+                <li class="mx-1">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li class="mx-1">@Html.ActionLink("About", "About", "Home")</liclass="mx-1">
+                <li class="mx-1">@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            @*<div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-            </div>
-        </div>
-    </div>*@
+            </div>*@
+        </nav>
+    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
