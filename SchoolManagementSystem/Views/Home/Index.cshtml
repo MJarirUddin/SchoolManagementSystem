@@ -9,10 +9,10 @@
 
 <div class="row">
     <div class="col-md-4">
-        <a href=""  class="btn btn-primary btn-block btn-lg">Students</a>
+        @Html.ActionLink("Student","Index","Student",null, new { @class = "btn btn-primary btn-block btn-lg" })
     </div>
     <div class="col-md-4">
-        <a href="" class="btn btn-primary btn-block btn-lg">Teachers</a>
+        @Html.ActionLink("Teachers", "Index", "Teacher",null,  new { @class = "btn btn-primary btn-block btn-lg" })
     </div>
     <div class="col-md-4">
         <a href="" class="btn btn-primary btn-block btn-lg">Accounts</a>

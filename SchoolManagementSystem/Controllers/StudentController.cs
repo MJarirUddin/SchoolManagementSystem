@@ -15,7 +15,7 @@ namespace SchoolManagementSystem.Controllers
         public StudentController()
         {
             unitOfWork = new UnitofWork();
-            studentRepository = new StudentRepository(new SchoolDBContext());
+            studentRepository = new StudentRepository(unitOfWork.context);
 
         }
         // GET: Student
@@ -43,12 +43,12 @@ namespace SchoolManagementSystem.Controllers
 
         // POST: Student/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Student student)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                studentRepository.Insert(student);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -84,7 +84,9 @@ namespace SchoolManagementSystem.Controllers
         // GET: Student/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            studentRepository.Delete(id);
+            unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         // POST: Student/Delete/5

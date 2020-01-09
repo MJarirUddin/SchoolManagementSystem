@@ -169,9 +169,6 @@
     <Compile Include="Student.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>SchoolModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Teacher.cs">
       <DependentUpon>SchoolModel.tt</DependentUpon>
     </Compile>

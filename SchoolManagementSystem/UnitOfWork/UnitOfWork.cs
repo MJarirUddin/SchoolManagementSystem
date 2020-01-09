@@ -5,7 +5,7 @@ namespace SchoolManagementSystem.UnitOfWork
 {
     public class UnitofWork : IDisposable
     {
-        private SchoolDBContext context = new SchoolDBContext();
+        public SchoolDBContext context = new SchoolDBContext();
         private BaseRepository<User> userRepository;
         public BaseRepository<User> UserRepository
         {
