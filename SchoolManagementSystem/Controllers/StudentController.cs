@@ -28,8 +28,8 @@ namespace SchoolManagementSystem.Controllers
         // GET: Student/Details/5
         public ActionResult Details(int id)
         {
-            studentRepository.GetByID(id);
-            return View();
+            var student= studentRepository.GetByID(id);
+            return View(student);
         }
 
         // GET: Student/Create

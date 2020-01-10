@@ -10,55 +10,58 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.GR_NO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Class)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fee)
-        </th>
-        <th></th>
-    </tr>
+<div class="info-table table-responsive p-5 bg-white rounded ">
+    <table class="table table text-nowrap  table-borderless">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GR_NO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fee)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GR_NO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Class)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fee)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.SID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.SID}) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SID })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GR_NO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Class)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fee)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>
