@@ -21,17 +21,14 @@ namespace SchoolManagementSystem.Controllers
         // GET: Student
         public ActionResult Index()
         {
-             
-
-           
             var students = studentRepository.Get();
-
             return View(students);
         }
 
         // GET: Student/Details/5
         public ActionResult Details(int id)
         {
+            studentRepository.GetByID(id);
             return View();
         }
 
