@@ -10,21 +10,26 @@ namespace SchoolManagementSystem.Controllers
 {
     public class TeacherController : Controller
     {
+        UnitofWork unitOfWork;
+        TeacherRepository teacherRepository;
+
+        public TeacherController()
+        {
+            unitOfWork = new UnitofWork();
+            teacherRepository = new TeacherRepository(unitOfWork.context);
+        }
         // GET: Teacher
         public ActionResult Index()
         {
-            UnitofWork unitOfWork = new UnitofWork();
-
-            TeacherRepository teacherRepository = new TeacherRepository(new SchoolDBContext());
-            var teacher = teacherRepository.Get();
-
-            return View(teacher);
+            var teachers = teacherRepository.Get();
+            return View(teachers);
         }
 
         // GET: Teacher/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var teacher = teacherRepository.GetByID(id);
+            return View(teacher);
         }
 
         // GET: Teacher/Create
@@ -35,12 +40,12 @@ namespace SchoolManagementSystem.Controllers
 
         // POST: Teacher/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Teacher teacher)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                teacherRepository.Insert(teacher);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -52,17 +57,19 @@ namespace SchoolManagementSystem.Controllers
         // GET: Teacher/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View("Edit",teacherRepository.GetByID(id));
         }
 
         // POST: Teacher/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Teacher teacher)
         {
             try
             {
                 // TODO: Add update logic here
 
+                teacherRepository.Update(teacher);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -74,12 +81,15 @@ namespace SchoolManagementSystem.Controllers
         // GET: Teacher/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+
+            teacherRepository.Delete(id);
+            unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         // POST: Teacher/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Teacher teacher)
         {
             try
             {

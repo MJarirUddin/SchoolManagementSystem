@@ -10,67 +10,70 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.F_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CNIC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Contact)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Qualification)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Salary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
+<div class="info-table table-responsive p-5 bg-white rounded ">
+    <table class="table table text-nowrap  table-borderless">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.F_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNIC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Qualification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            @*<th>
+                @html.displaynamefor(model => model.address)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.F_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CNIC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contact)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Qualification)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.F_ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.F_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.F_ID })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.F_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CNIC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qualification)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.F_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.F_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.F_ID })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+    </div>

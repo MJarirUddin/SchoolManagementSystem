@@ -184,7 +184,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
     <Content Include="SchoolModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SchoolModel.edmx</DependentUpon>
@@ -338,6 +338,9 @@
     <Content Include="Views\AccountsTeacher\Index.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\Details.cshtml" />
+    <Content Include="Views\Teacher\Create.cshtml" />
+    <Content Include="Views\Teacher\Details.cshtml" />
+    <Content Include="Views\Teacher\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

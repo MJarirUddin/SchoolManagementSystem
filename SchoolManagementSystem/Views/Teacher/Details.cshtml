@@ -1,0 +1,94 @@
+﻿@model SchoolManagementSystem.Teacher
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.F_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div>
+    <h4>Teacher</h4>
+    <hr />
+
+    <div class="info-table table-responsive p-5 bg-white rounded ">
+        <table class=" table text-nowrap table-hover table-borderless">
+            <tbody>
+                <tr>
+                    <td>
+                        Employee ID:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.F_ID)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Name:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Qualification:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.Qualification)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Phone:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.Contact)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Salary:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.Salary) Rs
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        CNIC:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.CNIC)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Email ID:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Address:
+                    </td>
+                    <td class="font-weight-bold text-dark">
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+</div>
