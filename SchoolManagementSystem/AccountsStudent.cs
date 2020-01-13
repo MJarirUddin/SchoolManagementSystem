@@ -14,10 +14,11 @@ namespace SchoolManagementSystem
     
     public partial class AccountsStudent
     {
-        public int GR_No { get; set; }
+        public int Trans_ID { get; set; }
+        public Nullable<int> SID { get; set; }
+        public Nullable<System.DateTime> Month { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string status { get; set; }
-        public System.DateTime Month { get; set; }
-        public System.DateTime Date { get; set; }
     
         public virtual Student Student { get; set; }
     }

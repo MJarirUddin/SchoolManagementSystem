@@ -21,11 +21,12 @@ namespace SchoolManagementSystem
         }
     
         public int F_ID { get; set; }
+        public string EMP_NO { get; set; }
         public string Name { get; set; }
         public string CNIC { get; set; }
         public string Contact { get; set; }
         public string Qualification { get; set; }
-        public string Salary { get; set; }
+        public Nullable<int> Salary { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
     

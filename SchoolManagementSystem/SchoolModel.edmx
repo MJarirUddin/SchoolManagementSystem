@@ -7,23 +7,23 @@
     <Schema Namespace="SchoolDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountsStudent">
           <Key>
-            <PropertyRef Name="GR_No" />
-            <PropertyRef Name="Month" />
+            <PropertyRef Name="Trans_ID" />
           </Key>
-          <Property Name="GR_No" Type="int" Nullable="false" />
-          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Month" Type="date" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Trans_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SID" Type="int" />
+          <Property Name="Month" Type="date" />
+          <Property Name="Date" Type="date" />
+          <Property Name="status" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="AccountsTeacher">
           <Key>
-            <PropertyRef Name="FID" />
-            <PropertyRef Name="Month" />
+            <PropertyRef Name="Trans_ID" />
           </Key>
-          <Property Name="FID" Type="int" Nullable="false" />
-          <Property Name="Month" Type="date" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Trans_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="F_ID" Type="int" />
+          <Property Name="Month" Type="date" />
+          <Property Name="Date" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -42,35 +42,36 @@
             <PropertyRef Name="F_ID" />
           </Key>
           <Property Name="F_ID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CNIC" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Qualification" Type="nvarchar" MaxLength="50" />
-          <Property Name="Salary" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMP_NO" Type="varchar" MaxLength="30" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="CNIC" Type="varchar" MaxLength="16" />
+          <Property Name="Contact" Type="varchar" MaxLength="30" />
+          <Property Name="Qualification" Type="varchar" MaxLength="50" />
+          <Property Name="Salary" Type="int" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_AccountsStudent_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="AccountsStudent" Type="Self.AccountsStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="SID" />
             </Principal>
             <Dependent Role="AccountsStudent">
-              <PropertyRef Name="GR_No" />
+              <PropertyRef Name="SID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_AccountsTeacher_Teacher">
-          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+        <Association Name="FK_AccountsTeacher_AccountsTeacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
           <End Role="AccountsTeacher" Type="Self.AccountsTeacher" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Teacher">
               <PropertyRef Name="F_ID" />
             </Principal>
             <Dependent Role="AccountsTeacher">
-              <PropertyRef Name="FID" />
+              <PropertyRef Name="F_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -83,7 +84,7 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="AccountsStudent" EntitySet="AccountsStudent" />
           </AssociationSet>
-          <AssociationSet Name="FK_AccountsTeacher_Teacher" Association="Self.FK_AccountsTeacher_Teacher">
+          <AssociationSet Name="FK_AccountsTeacher_AccountsTeacher" Association="Self.FK_AccountsTeacher_AccountsTeacher">
             <End Role="Teacher" EntitySet="Teacher" />
             <End Role="AccountsTeacher" EntitySet="AccountsTeacher" />
           </AssociationSet>
@@ -92,67 +93,34 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SchoolDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SchoolDBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Teachers" EntityType="SchoolDBModel.Teacher" />
+          <EntitySet Name="Students" EntityType="SchoolDBModel.Student" />
+          <EntitySet Name="AccountsStudents" EntityType="SchoolDBModel.AccountsStudent" />
+          <AssociationSet Name="FK_AccountsStudent_Student" Association="SchoolDBModel.FK_AccountsStudent_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="AccountsStudent" EntitySet="AccountsStudents" />
+          </AssociationSet>
+          <EntitySet Name="AccountsTeachers" EntityType="SchoolDBModel.AccountsTeacher" />
+          <AssociationSet Name="FK_AccountsTeacher_AccountsTeacher" Association="SchoolDBModel.FK_AccountsTeacher_AccountsTeacher">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="AccountsTeacher" EntitySet="AccountsTeachers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Teacher">
           <Key>
             <PropertyRef Name="F_ID" />
           </Key>
           <Property Name="F_ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CNIC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AccountsTeachers" Relationship="SchoolDBModel.FK_AccountsTeacher_Teacher" FromRole="Teacher" ToRole="AccountsTeacher" />
-        </EntityType>
-        <EntityContainer Name="SchoolDBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
-          <EntitySet Name="AccountsTeachers" EntityType="SchoolDBModel.AccountsTeacher" />
-          <AssociationSet Name="FK_AccountsTeacher_Teacher" Association="SchoolDBModel.FK_AccountsTeacher_Teacher">
-            <End Role="Teacher" EntitySet="Teachers" />
-            <End Role="AccountsTeacher" EntitySet="AccountsTeachers" />
-          </AssociationSet>
-          <EntitySet Name="AccountsStudents" EntityType="SchoolDBModel.AccountsStudent" />
-          <EntitySet Name="Students" EntityType="SchoolDBModel.Student" />
-          <AssociationSet Name="FK_AccountsStudent_Student" Association="SchoolDBModel.FK_AccountsStudent_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="AccountsStudent" EntitySet="AccountsStudents" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="AccountsTeacher">
-          <Key>
-            <PropertyRef Name="FID" />
-            <PropertyRef Name="Month" />
-          </Key>
-          <Property Name="FID" Type="Int32" Nullable="false" />
-          <Property Name="Month" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Teacher" Relationship="SchoolDBModel.FK_AccountsTeacher_Teacher" FromRole="AccountsTeacher" ToRole="Teacher" />
-        </EntityType>
-        <Association Name="FK_AccountsTeacher_Teacher">
-          <End Type="SchoolDBModel.Teacher" Role="Teacher" Multiplicity="1" />
-          <End Type="SchoolDBModel.AccountsTeacher" Role="AccountsTeacher" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Teacher">
-              <PropertyRef Name="F_ID" />
-            </Principal>
-            <Dependent Role="AccountsTeacher">
-              <PropertyRef Name="FID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="AccountsStudent">
-          <Key>
-            <PropertyRef Name="GR_No" />
-            <PropertyRef Name="Month" />
-          </Key>
-          <Property Name="GR_No" Type="Int32" Nullable="false" />
-          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Month" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_AccountsStudent_Student" FromRole="AccountsStudent" ToRole="Student" />
+          <Property Name="EMP_NO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CNIC" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salary" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AccountsTeachers" Relationship="SchoolDBModel.FK_AccountsTeacher_AccountsTeacher" FromRole="Teacher" ToRole="AccountsTeacher" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -167,19 +135,53 @@
           <Property Name="GR_NO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AccountsStudents" Relationship="SchoolDBModel.FK_AccountsStudent_Student" FromRole="Student" ToRole="AccountsStudent" />
         </EntityType>
+        <EntityType Name="AccountsStudent">
+          <Key>
+            <PropertyRef Name="Trans_ID" />
+          </Key>
+          <Property Name="Trans_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SID" Type="Int32" />
+          <Property Name="Month" Type="DateTime" Precision="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Student" Relationship="SchoolDBModel.FK_AccountsStudent_Student" FromRole="AccountsStudent" ToRole="Student" />
+        </EntityType>
         <Association Name="FK_AccountsStudent_Student">
-          <End Type="SchoolDBModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="SchoolDBModel.Student" Role="Student" Multiplicity="0..1" />
           <End Type="SchoolDBModel.AccountsStudent" Role="AccountsStudent" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Student">
               <PropertyRef Name="SID" />
             </Principal>
             <Dependent Role="AccountsStudent">
-              <PropertyRef Name="GR_No" />
+              <PropertyRef Name="SID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="AccountsTeacher">
+          <Key>
+            <PropertyRef Name="Trans_ID" />
+          </Key>
+          <Property Name="Trans_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="F_ID" Type="Int32" />
+          <Property Name="Month" Type="DateTime" Precision="0" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Teacher" Relationship="SchoolDBModel.FK_AccountsTeacher_AccountsTeacher" FromRole="AccountsTeacher" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_AccountsTeacher_AccountsTeacher">
+          <End Type="SchoolDBModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="SchoolDBModel.AccountsTeacher" Role="AccountsTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="F_ID" />
+            </Principal>
+            <Dependent Role="AccountsTeacher">
+              <PropertyRef Name="F_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -188,34 +190,15 @@
           <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="SchoolDBModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
-                <ScalarProperty Name="F_ID" ColumnName="F_ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
-                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
-                <ScalarProperty Name="Salary" ColumnName="Salary" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AccountsTeachers">
-            <EntityTypeMapping TypeName="SchoolDBModel.AccountsTeacher">
-              <MappingFragment StoreEntitySet="AccountsTeacher">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Month" ColumnName="Month" />
-                <ScalarProperty Name="FID" ColumnName="FID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AccountsStudents">
-            <EntityTypeMapping TypeName="SchoolDBModel.AccountsStudent">
-              <MappingFragment StoreEntitySet="AccountsStudent">
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Month" ColumnName="Month" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="GR_No" ColumnName="GR_No" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EMP_NO" ColumnName="EMP_NO" />
+                <ScalarProperty Name="F_ID" ColumnName="F_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -229,6 +212,28 @@
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="SName" ColumnName="SName" />
                 <ScalarProperty Name="SID" ColumnName="SID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountsStudents">
+            <EntityTypeMapping TypeName="SchoolDBModel.AccountsStudent">
+              <MappingFragment StoreEntitySet="AccountsStudent">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="SID" ColumnName="SID" />
+                <ScalarProperty Name="Trans_ID" ColumnName="Trans_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountsTeachers">
+            <EntityTypeMapping TypeName="SchoolDBModel.AccountsTeacher">
+              <MappingFragment StoreEntitySet="AccountsTeacher">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="F_ID" ColumnName="F_ID" />
+                <ScalarProperty Name="Trans_ID" ColumnName="Trans_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,8 +7,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body class="bg-light" >
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body class="bg-light" style="padding-top:0px; padding-bottom:0px;" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
         <a class="navbar-brand" href="#">DevsOMEGA</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,16 +17,16 @@
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    @Html.ActionLink("Home", "Index","Home",null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Students</a>
+                    @Html.ActionLink("Student", "Index", "Student", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Teachers</a>
+                    @Html.ActionLink("Teachers", "Index", "Teacher", null, new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Accounts</a>
+                    @*<a class="nav-link" href="#">Accounts</a>*@
                 </li>
             </ul>
           

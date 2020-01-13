@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1f64c7480dd2448a9474c0c35145c964" Name="Diagram1">
-        <EntityTypeShape EntityType="SchoolDBModel.Teacher" Width="1.5" PointX="3.75" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SchoolDBModel.AccountsTeacher" Width="1.5" PointX="2.75" PointY="4.75" />
-        <AssociationConnector Association="SchoolDBModel.FK_AccountsTeacher_Teacher" />
-        <EntityTypeShape EntityType="SchoolDBModel.AccountsStudent" Width="1.5" PointX="8.625" PointY="1.25" />
-        <EntityTypeShape EntityType="SchoolDBModel.Student" Width="1.5" PointX="6.375" PointY="1" />
+        <EntityTypeShape EntityType="SchoolDBModel.Teacher" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="SchoolDBModel.Student" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SchoolDBModel.AccountsStudent" Width="1.5" PointX="5" PointY="5" />
         <AssociationConnector Association="SchoolDBModel.FK_AccountsStudent_Student" />
+        <EntityTypeShape EntityType="SchoolDBModel.AccountsTeacher" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="SchoolDBModel.FK_AccountsTeacher_AccountsTeacher" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

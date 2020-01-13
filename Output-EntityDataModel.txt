@@ -1,0 +1,12 @@
+﻿Generated model file: SchoolModel.edmx.
+Loading metadata from the database took 00:00:00.9796187.
+Generating the model took 00:00:01.8457332.
+Generated model file: SchoolModel.edmx.
+Loading metadata from the database took 00:00:00.5997480.
+Generating the model took 00:00:00.4551645.
+Generated model file: SchoolModel.edmx.
+Loading metadata from the database took 00:00:00.7992964.
+Generating the model took 00:00:00.4700646.
+Generated model file: SchoolModel.edmx.
+Loading metadata from the database took 00:00:00.6923312.
+Generating the model took 00:00:00.3973450.

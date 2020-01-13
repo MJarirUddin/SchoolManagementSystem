@@ -14,9 +14,10 @@ namespace SchoolManagementSystem
     
     public partial class AccountsTeacher
     {
-        public int FID { get; set; }
-        public System.DateTime Month { get; set; }
-        public System.DateTime Date { get; set; }
+        public int Trans_ID { get; set; }
+        public Nullable<int> F_ID { get; set; }
+        public Nullable<System.DateTime> Month { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
         public string Status { get; set; }
     
         public virtual Teacher Teacher { get; set; }

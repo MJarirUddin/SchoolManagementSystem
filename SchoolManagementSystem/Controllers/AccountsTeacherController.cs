@@ -5,63 +5,78 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementSystem.Controllers
 {
+    //[RoutePrefix("Accounts")]
     public class AccountsTeacherController : Controller
     {
+        AccountTeacherRepository accountsTeacherRepository;
+        UnitofWork unitOfWork;
+       
         // GET: AccountsTeacher
+        public AccountsTeacherController()
+        {
+            unitOfWork = new UnitofWork();
+            accountsTeacherRepository = new AccountTeacherRepository(unitOfWork.context);            
+        }
+
+        //[Route("Teacher/Salaries")]
         public ActionResult Index()
         {
-            UnitofWork unitOfWork = new UnitofWork();
-
-            AccountStudentRepository accountsteacherRepository = new AccountStudentRepository(new SchoolDBContext());
-            var accountsteacher = accountsteacherRepository.Get();
-
-            return View(accountsteacher);
+            var allrecords = accountsTeacherRepository.Get();
+            return View(allrecords);
         }
 
         // GET: AccountsTeacher/Details/5
+        //[Route("Teacher/Salaries/{id}")]
         public ActionResult Details(int id)
         {
-            return View();
+            var record = accountsTeacherRepository.GetByID(id);
+            return View(record);
         }
 
         // GET: AccountsTeacher/Create
+        //[Route("Teacher/Add_Salary")]
         public ActionResult Create()
         {
+
             return View();
         }
 
         // POST: AccountsTeacher/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        //[Route("Teacher/Add_Salary")]
+        public ActionResult Create(AccountsTeacher record)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                
+                accountsTeacherRepository.Insert(record);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View( ex.Message);
             }
         }
 
         // GET: AccountsTeacher/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+          var record = accountsTeacherRepository.GetByID(id);
+            return View(record);
         }
 
         // POST: AccountsTeacher/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, AccountsTeacher accounts)
         {
             try
             {
-                // TODO: Add update logic here
+                accountsTeacherRepository.Insert(accounts);
 
                 return RedirectToAction("Index");
             }
@@ -74,7 +89,9 @@ namespace SchoolManagementSystem.Controllers
         // GET: AccountsTeacher/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            accountsTeacherRepository.Delete(id);
+            unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         // POST: AccountsTeacher/Delete/5
