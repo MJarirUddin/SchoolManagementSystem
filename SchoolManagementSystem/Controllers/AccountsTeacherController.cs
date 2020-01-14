@@ -5,24 +5,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.ComponentModel.DataAnnotations;
 
 namespace SchoolManagementSystem.Controllers
 {
-    //[RoutePrefix("Accounts")]
     public class AccountsTeacherController : Controller
     {
-        AccountTeacherRepository accountsTeacherRepository;
+        AccountsTeacherRepository accountsTeacherRepository;
         UnitofWork unitOfWork;
        
-        // GET: AccountsTeacher
         public AccountsTeacherController()
         {
             unitOfWork = new UnitofWork();
-            accountsTeacherRepository = new AccountTeacherRepository(unitOfWork.context);            
+            accountsTeacherRepository = new AccountsTeacherRepository(unitOfWork.context);            
         }
-
-        //[Route("Teacher/Salaries")]
+        
+        // GET: AccountsTeacher
         public ActionResult Index()
         {
             var allrecords = accountsTeacherRepository.Get();
@@ -30,7 +27,6 @@ namespace SchoolManagementSystem.Controllers
         }
 
         // GET: AccountsTeacher/Details/5
-        //[Route("Teacher/Salaries/{id}")]
         public ActionResult Details(int id)
         {
             var record = accountsTeacherRepository.GetByID(id);
@@ -38,35 +34,31 @@ namespace SchoolManagementSystem.Controllers
         }
 
         // GET: AccountsTeacher/Create
-        //[Route("Teacher/Add_Salary")]
         public ActionResult Create()
         {
-
             return View();
         }
 
         // POST: AccountsTeacher/Create
         [HttpPost]
-        //[Route("Teacher/Add_Salary")]
         public ActionResult Create(AccountsTeacher record)
         {
             try
             {
-                
                 accountsTeacherRepository.Insert(record);
                 unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                return View( ex.Message);
+                return View(ex.Message);
             }
         }
 
         // GET: AccountsTeacher/Edit/5
         public ActionResult Edit(int id)
         {
-          var record = accountsTeacherRepository.GetByID(id);
+            var record = accountsTeacherRepository.GetByID(id);
             return View(record);
         }
 
@@ -76,8 +68,8 @@ namespace SchoolManagementSystem.Controllers
         {
             try
             {
-                accountsTeacherRepository.Insert(accounts);
-
+                accountsTeacherRepository.Update(accounts);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             catch

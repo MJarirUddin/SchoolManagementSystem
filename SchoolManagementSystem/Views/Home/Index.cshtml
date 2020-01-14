@@ -15,6 +15,16 @@
         @Html.ActionLink("Teachers", "Index", "Teacher",null,  new { @class = "btn btn-primary btn-block btn-lg" })
     </div>
     <div class="col-md-4">
-        <a href="" class="btn btn-primary btn-block btn-lg">Accounts</a>
+        <div class="btn-group btn-block  accordion" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-block btn-lg btn-primary">Accounts</button>
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop2" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                    @Html.ActionLink("View Students Fee", "Index", "AccountsStudent", null, new { @class = "btn dropdown-item " })
+                    @Html.ActionLink("View Teachers Salary", "Index", "AccountsTeacher", null, new { @class = "btn dropdown-item " })                    
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

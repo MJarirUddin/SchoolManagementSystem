@@ -1,8 +1,7 @@
-﻿@model SchoolManagementSystem.AccountsTeacher
-
+﻿@model SchoolManagementSystem.AccountsStudent
 
 <div>
-    <h4>AccountsTeacher</h4>
+    <h4>AccountsStudent</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -12,6 +11,7 @@
         <dd>
             @Html.DisplayFor(model => model.Month)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
@@ -29,16 +29,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Teacher.EName)
+            @Html.DisplayNameFor(model => model.Student.SName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Teacher.EName)
+            @Html.DisplayFor(model => model.Student.SName)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Trans_ID  }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Trans_ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

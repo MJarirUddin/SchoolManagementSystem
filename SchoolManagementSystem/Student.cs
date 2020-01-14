@@ -20,7 +20,7 @@ namespace SchoolManagementSystem
             this.AccountsStudents = new HashSet<AccountsStudent>();
         }
     
-        public int SID { get; set; }
+        public int S_ID { get; set; }
         public string SName { get; set; }
         public string FName { get; set; }
         public string Contact { get; set; }

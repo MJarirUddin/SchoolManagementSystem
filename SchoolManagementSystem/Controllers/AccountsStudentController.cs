@@ -10,21 +10,27 @@ namespace SchoolManagementSystem.Controllers
 {
     public class AccountsStudentController : Controller
     {
+        AccountsStudentRepository accountsStudentRepository;
+        UnitofWork unitOfWork;
+
+        public AccountsStudentController()
+        {
+            unitOfWork = new UnitofWork();
+            accountsStudentRepository = new AccountsStudentRepository(unitOfWork.context);
+        }
+
         // GET: AccountsStudent
         public ActionResult Index()
         {
-            UnitofWork unitOfWork = new UnitofWork();
-
-            AccountStudentRepository accountsstudentRepository = new AccountStudentRepository(new SchoolDBContext());
-            var accountsstudent = accountsstudentRepository.Get();
-
-            return View(accountsstudent);
+            var allrecords = accountsStudentRepository.Get();
+            return View(allrecords);
         }
 
         // GET: AccountsStudent/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var record = accountsStudentRepository.GetByID(id);
+            return View(record);
         }
 
         // GET: AccountsStudent/Create
@@ -35,34 +41,36 @@ namespace SchoolManagementSystem.Controllers
 
         // POST: AccountsStudent/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AccountsStudent record)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                accountsStudentRepository.Insert(record);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return View(ex.Message);
             }
         }
 
         // GET: AccountsStudent/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var record = accountsStudentRepository.GetByID(id);
+            unitOfWork.Save();
+            return View(record);
         }
 
         // POST: AccountsStudent/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, AccountsStudent accounts)
         {
             try
             {
-                // TODO: Add update logic here
-
+                accountsStudentRepository.Update(accounts);
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             catch
@@ -74,7 +82,9 @@ namespace SchoolManagementSystem.Controllers
         // GET: AccountsStudent/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            accountsStudentRepository.Delete(id);
+            unitOfWork.Save();
+            return RedirectToAction("Index");
         }
 
         // POST: AccountsStudent/Delete/5

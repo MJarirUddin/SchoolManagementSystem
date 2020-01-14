@@ -10,9 +10,9 @@ namespace SchoolManagementSystem.Repositories
     {
 
     }
-    public class AccountTeacherRepository : BaseRepository<AccountsTeacher>, IAccountTeacherRepository
+    public class AccountsTeacherRepository : BaseRepository<AccountsTeacher>, IAccountTeacherRepository
     {
-        public AccountTeacherRepository(SchoolDBContext Context) : base(Context)
+        public AccountsTeacherRepository(SchoolDBContext Context) : base(Context)
         {
 
 
