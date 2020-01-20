@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SchoolManagementSystem
+namespace SchoolManagementSystem.Data
 {
     using System;
     using System.Collections.Generic;

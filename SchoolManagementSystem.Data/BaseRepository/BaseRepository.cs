@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SchoolManagementSystem.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;

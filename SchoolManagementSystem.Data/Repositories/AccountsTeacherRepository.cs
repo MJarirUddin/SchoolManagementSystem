@@ -1,4 +1,5 @@
 ﻿using SchoolManagementSystem.BaseRepository;
+using SchoolManagementSystem.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
