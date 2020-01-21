@@ -83,6 +83,8 @@
     <Compile Include="Teacher.cs">
       <DependentUpon>SchoolDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="UnitOfWork\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

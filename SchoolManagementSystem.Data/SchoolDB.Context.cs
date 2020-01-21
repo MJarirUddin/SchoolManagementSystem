@@ -15,8 +15,7 @@ namespace SchoolManagementSystem.Data
     
     public partial class SchoolDBContext : DbContext
     {
-        public SchoolDBContext()
-            : base("name=SchoolDBContext")
+        public SchoolDBContext() : base("name=SchoolDBContext")
         {
         }
     

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Data", "SchoolManagementSystem.Data\SchoolManagementSystem.Data.csproj", "{DD490A19-3563-4B43-BCFB-8E63BEFB01E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolManagementSystem.Adapter", "SchoolManagementSystem.Adapter\SchoolManagementSystem.Adapter.csproj", "{0D35FB1C-188D-4EBE-92BE-B8CDEE56FDDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{71829D58-584F-4EC4-9C6D-C2C201F05296}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{DD490A19-3563-4B43-BCFB-8E63BEFB01E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD490A19-3563-4B43-BCFB-8E63BEFB01E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD490A19-3563-4B43-BCFB-8E63BEFB01E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D35FB1C-188D-4EBE-92BE-B8CDEE56FDDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D35FB1C-188D-4EBE-92BE-B8CDEE56FDDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D35FB1C-188D-4EBE-92BE-B8CDEE56FDDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D35FB1C-188D-4EBE-92BE-B8CDEE56FDDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71829D58-584F-4EC4-9C6D-C2C201F05296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71829D58-584F-4EC4-9C6D-C2C201F05296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71829D58-584F-4EC4-9C6D-C2C201F05296}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71829D58-584F-4EC4-9C6D-C2C201F05296}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

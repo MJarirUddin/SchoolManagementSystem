@@ -1,5 +1,6 @@
 ﻿using System;
 using SchoolManagementSystem.BaseRepository;
+using SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.UnitOfWork
 {
