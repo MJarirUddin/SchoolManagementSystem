@@ -7,7 +7,8 @@ using System.Linq;
 using System.Linq.Expressions;
 
 namespace SchoolManagementSystem.BaseRepository
-{  public interface IBaseRepository<TEntity> where TEntity : class
+{  
+    public interface IBaseRepository<TEntity> where TEntity : class
     {
         IEnumerable<TEntity> Get();
         TEntity GetByID(object id);
@@ -15,7 +16,7 @@ namespace SchoolManagementSystem.BaseRepository
         void Delete(object id);
         void Delete(TEntity entityToDelete);
         void Update(TEntity entityToUpdate);
-            } 
+    } 
     public class BaseRepository<TEntity> where TEntity : class
     {
         internal SchoolDBContext context;

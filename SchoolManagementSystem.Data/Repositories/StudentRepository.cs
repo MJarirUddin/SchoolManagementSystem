@@ -16,4 +16,4 @@ namespace SchoolManagementSystem.Repositories
         {            
         }
     }
-}
+}   
