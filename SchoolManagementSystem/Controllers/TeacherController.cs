@@ -1,5 +1,6 @@
-﻿using SchoolManagementSystem.Repositories;
-using SchoolManagementSystem.UnitOfWork;
+﻿
+using SchoolManagementSystem.Adapter;
+using SchoolManagementSystem.View_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,25 +11,23 @@ namespace SchoolManagementSystem.Controllers
 {
     public class TeacherController : Controller
     {
-        UnitofWork unitOfWork;
-        TeacherRepository teacherRepository;
 
+        TeacherAdapter teacherAdapter;
         public TeacherController()
         {
-            unitOfWork = new UnitofWork();
-            teacherRepository = new TeacherRepository(unitOfWork.context);
+            teacherAdapter = new TeacherAdapter();
         }
         // GET: Teacher
         public ActionResult Index()
         {
-            var teachers = teacherRepository.Get();
+            var teachers = teacherAdapter.GetAllTeachers();
             return View(teachers);
         }
 
         // GET: Teacher/Details/5
         public ActionResult Details(int id)
         {
-            var teacher = teacherRepository.GetByID(id);
+            var teacher = teacherAdapter.GetTeacherById(id);
             return View(teacher);
         }
 
@@ -40,12 +39,11 @@ namespace SchoolManagementSystem.Controllers
 
         // POST: Teacher/Create
         [HttpPost]
-        public ActionResult Create(Teacher teacher)
+        public ActionResult Create(TeacherViewModel teacher)
         {
             try
             {
-                teacherRepository.Insert(teacher);
-                unitOfWork.Save();
+                teacherAdapter.Create(teacher);
                 return RedirectToAction("Index");
             }
             catch
@@ -57,19 +55,19 @@ namespace SchoolManagementSystem.Controllers
         // GET: Teacher/Edit/5
         public ActionResult Edit(int id)
         {
-            return View("Edit",teacherRepository.GetByID(id));
+            return View("Edit",teacherAdapter.GetTeacherById(id));
         }
 
         // POST: Teacher/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Teacher teacher)
+        public ActionResult Edit(int id, TeacherViewModel teacher)
         {
             try
             {
                 // TODO: Add update logic here
 
-                teacherRepository.Update(teacher);
-                unitOfWork.Save();
+                teacherAdapter.Update(teacher);
+                
                 return RedirectToAction("Index");
             }
             catch
@@ -82,14 +80,14 @@ namespace SchoolManagementSystem.Controllers
         public ActionResult Delete(int id)
         {
 
-            teacherRepository.Delete(id);
-            unitOfWork.Save();
+            teacherAdapter.Delete(id);
+            
             return RedirectToAction("Index");
         }
 
         // POST: Teacher/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Teacher teacher)
+        public ActionResult Delete(int id, TeacherViewModel teacher)
         {
             try
             {

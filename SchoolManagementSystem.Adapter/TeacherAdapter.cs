@@ -42,10 +42,22 @@ namespace SchoolManagementSystem.Adapter
             }
             return teachersList;
         }
-        public Teacher GetTeacherById(int id)
+        public TeacherViewModel GetTeacherById(int id)
         {
             var teacher = teacherRepository.GetByID(id);
-            return teacher;
+            TeacherViewModel viewModel = new TeacherViewModel
+            {
+                EName = teacher.EName,
+                Address = teacher.Address,
+                CNIC = teacher.CNIC,
+                Contact = teacher.Contact,
+                Email = teacher.Email,
+                EMP_ID = teacher.EMP_ID,
+                F_ID = teacher.F_ID,
+                Salary = teacher.F_ID,
+                Qualification =teacher.Qualification
+            };
+            return viewModel;
         }
         public bool Delete(int id)
         {
@@ -95,6 +107,14 @@ namespace SchoolManagementSystem.Adapter
                 Teacher tea = new Teacher 
                 {
                     EName = teachermodel.EName,
+                    Qualification = teachermodel.Qualification,
+                    Salary = teachermodel.Salary,
+                    Address= teachermodel.Address,
+                    CNIC = teachermodel.CNIC,
+                    Email = teachermodel.Email,
+                    Contact = teachermodel.Contact,
+                    EMP_ID = teachermodel.EMP_ID,
+
                      
                 };
                 teacherRepository.Insert(tea);

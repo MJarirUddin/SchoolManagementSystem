@@ -1,35 +1,33 @@
-﻿using SchoolManagementSystem.Repositories;
-using SchoolManagementSystem.UnitOfWork;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SchoolManagementSystem.Adapter;
+using SchoolManagementSystem.View_Models;
 
 namespace SchoolManagementSystem.Controllers
 {
     public class AccountsTeacherController : Controller
     {
-        AccountsTeacherRepository accountsTeacherRepository;
-        UnitofWork unitOfWork;
-       
+        AccountsTeacherAdapter accountsTeacherAdapter;
+
         public AccountsTeacherController()
         {
-            unitOfWork = new UnitofWork();
-            accountsTeacherRepository = new AccountsTeacherRepository(unitOfWork.context);            
+            accountsTeacherAdapter = new AccountsTeacherAdapter();
         }
         
         // GET: AccountsTeacher
         public ActionResult Index()
         {
-            var allrecords = accountsTeacherRepository.Get();
+            var allrecords = accountsTeacherAdapter.GetAllAccountsTeacher();
             return View(allrecords);
         }
 
         // GET: AccountsTeacher/Details/5
         public ActionResult Details(int id)
         {
-            var record = accountsTeacherRepository.GetByID(id);
+            var record = accountsTeacherAdapter.GetAccountsTeacherById(id);
             return View(record);
         }
 
@@ -41,12 +39,16 @@ namespace SchoolManagementSystem.Controllers
 
         // POST: AccountsTeacher/Create
         [HttpPost]
-        public ActionResult Create(AccountsTeacher record)
+        public ActionResult Create(AccountsTeacherViewModel record)
         {
+            if (record == null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
+
             try
             {
-                accountsTeacherRepository.Insert(record);
-                unitOfWork.Save();
+                accountsTeacherAdapter.Create(record);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -58,18 +60,17 @@ namespace SchoolManagementSystem.Controllers
         // GET: AccountsTeacher/Edit/5
         public ActionResult Edit(int id)
         {
-            var record = accountsTeacherRepository.GetByID(id);
+            var record = accountsTeacherAdapter.GetAccountsTeacherById(id);
             return View(record);
         }
 
         // POST: AccountsTeacher/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, AccountsTeacher accounts)
+        public ActionResult Edit(int id, AccountsTeacherViewModel accounts)
         {
             try
             {
-                accountsTeacherRepository.Update(accounts);
-                unitOfWork.Save();
+                accountsTeacherAdapter.Update(accounts);
                 return RedirectToAction("Index");
             }
             catch
@@ -81,8 +82,7 @@ namespace SchoolManagementSystem.Controllers
         // GET: AccountsTeacher/Delete/5
         public ActionResult Delete(int id)
         {
-            accountsTeacherRepository.Delete(id);
-            unitOfWork.Save();
+            accountsTeacherAdapter.Delete(id);
             return RedirectToAction("Index");
         }
 
